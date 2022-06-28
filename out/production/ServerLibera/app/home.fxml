@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="AP" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HomeController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="300.0" style="-fx-border-color: #5E654F; -fx-border-width: 1;">
+         <children>
+            <BorderPane prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+               <top>
+                  <Pane prefHeight="86.0" prefWidth="298.0" style="-fx-background-color: #bed9d4;" BorderPane.alignment="CENTER">
+                     <children>
+                        <JFXButton focusTraversable="false" layoutX="216.0" layoutY="19.0" onAction="#AddTaskAction" prefHeight="50.0" prefWidth="77.0" text="Добавить">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <ImageView fitHeight="57.0" fitWidth="76.0" layoutX="14.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/libera-logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+               </top>
+               <center>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="759.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                     <content>
+                        <VBox prefWidth="300.0" spacing="30.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="35.0" prefWidth="300.0" spacing="10.0">
+                                 <children>
+                                    <AnchorPane prefHeight="35.0" prefWidth="290.0">
+                                       <children>
+                                          <JFXTextField fx:id="searchComBox" focusColor="BLACK" layoutX="6.0" layoutY="7.0" onKeyReleased="#searchEvent" prefHeight="35.0" prefWidth="270.0" promptText="🔎 Поиск" style="-fx-background-color: #e4e4e4;" unFocusColor="#ffffff00" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="14.0">
+                                             <padding>
+                                                <Insets left="10.0" right="10.0" />
+                                             </padding>
+                                          </JFXTextField>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <FlowPane fx:id="FP" alignment="CENTER" hgap="10.0" prefWidth="863.0" prefWrapLength="0.0" rowValignment="TOP" vgap="30.0" />
+                           </children>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="20.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </center>
+            </BorderPane>
+            <Pane onMouseDragged="#RootMouseDragged" onMousePressed="#RootMousePressed" prefHeight="35.0" prefWidth="900.0" style="-fx-background-color: #91a5a2;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <MenuBar fx:id="menuBar" layoutY="5.0" maxHeight="98.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #91a5a2;">
+                     <menus>
+                        <Menu id="file" fx:id="file" mnemonicParsing="false" text="Файл">
+                           <items>
+                              <MenuItem id="close" fx:id="About" mnemonicParsing="false" onAction="#aboutWindow" text="О программе">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem id="close" fx:id="close" mnemonicParsing="false" onAction="#closeWindow" text="Выход">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                           </items>
+                        </Menu>
+                     </menus>
+                  </MenuBar>
+                  <JFXButton contentDisplay="TEXT_ONLY" focusTraversable="false" layoutX="50.0" layoutY="5.0" onAction="#refresh" prefHeight="25.0" prefWidth="32.0" text="🔄">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton focusTraversable="false" layoutX="231.0" layoutY="6.0" onAction="#closeWindow" prefHeight="25.0" prefWidth="62.0" text="Выйти" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
