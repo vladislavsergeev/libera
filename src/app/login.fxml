@@ -64,7 +64,7 @@
    </VBox>
    <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="134.0" prefHeight="98.0" prefWidth="146.0" textAlignment="RIGHT" wrapText="true">
          <font>
-            <Font name="Candara" size="13.0" />
+            <Font name="Candara Italic" size="12.0" />
          </font>
       </Label>
       <JFXButton layoutX="342.0" layoutY="30.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
