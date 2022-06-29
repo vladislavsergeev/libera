@@ -47,19 +47,27 @@ public class TaskController implements Initializable {
     private void editAction(KeyEvent event) {
         System.out.println("TaskController -> editAction() ...");
 
-        app.libera.send(Const.EDIT);
-        app.libera.waitForInt();
+        if (text.getText().equals("")) {
+            deleteAction();
+        }
+        else {
+            app.libera.send(Const.EDIT);
+            app.libera.waitForInt();
 
-        app.libera.send(text.getText());
-        app.libera.waitForInt();
+            app.libera.send(text.getText());
+            app.libera.waitForInt();
 
-        app.libera.send(Integer.parseInt(id.getText()));
+            app.libera.send(Integer.parseInt(id.getText()));
+        }
     }
 
     @FXML
     private void delete(ActionEvent event) {
         System.out.println("TaskController -> delete() ...");
+        deleteAction();
+    }
 
+    private void deleteAction() {
         app.libera.send(Const.REMOVE);
         app.libera.waitForInt();
         app.libera.send(Integer.parseInt(id.getText()));
@@ -72,5 +80,4 @@ public class TaskController implements Initializable {
             System.out.println(ex);
         }
     }
-
 }

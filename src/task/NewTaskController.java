@@ -62,7 +62,7 @@ public class NewTaskController implements Initializable {
     private void AddAction(Event event) {
         try {
             System.out.println("NewTaskController -> AddAction()  ...");
-            HomeController.insert(text.getText(), hexaColor);
+            if (!text.getText().equals("")) HomeController.insert(text.getText(), hexaColor);
             closeAction(event);
         } catch (Exception ex) {
             System.out.println(ex);
