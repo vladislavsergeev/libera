@@ -1,5 +1,6 @@
 package app;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -64,6 +65,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    @FXML
+    private void closeWindow(Event event) {
+        System.exit(0);
+    }
     @FXML
     private void doReg() {
         System.out.println("LoginController -> doReg() ...");
