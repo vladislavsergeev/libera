@@ -75,7 +75,7 @@ public class LoginController implements Initializable {
 
             int res = app.libera.waitForInt();
 
-            if (res == Const.LOGIN_DENIED) err.setText("Пользователя с таким именем уже существует");
+            if (res == Const.LOGIN_DENIED) err.setText("Пользователь с таким именем уже существует");
             else {
                 Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
