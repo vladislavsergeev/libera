@@ -12,15 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="420.0" style="-fx-border-color: #91a5a2; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="420.0" style="-fx-border-color: #91a5a2; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
 <children>
-      <ImageView fitHeight="52.0" fitWidth="32.0" layoutX="35.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/libera-logo-black.png" />
-         </image>
-      </ImageView>
-   <VBox layoutX="35.0" layoutY="119.0" spacing="40.0">
+   <VBox layoutX="41.0" layoutY="52.0" spacing="43.0">
       <children>
+            <ImageView fitHeight="52.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/libera-logo-black.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="17.0" />
+               </VBox.margin>
+            </ImageView>
          <VBox>
             <children>
                <JFXTextField fx:id="loginField" focusColor="#91a5a2" promptText="Логин">
@@ -62,16 +65,16 @@
             </VBox>
       </children>
    </VBox>
-   <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="134.0" prefHeight="98.0" prefWidth="146.0" textAlignment="RIGHT" wrapText="true">
+   <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="166.0" prefHeight="98.0" prefWidth="146.0" textAlignment="RIGHT" wrapText="true">
          <font>
             <Font name="Candara Italic" size="12.0" />
          </font>
       </Label>
-      <JFXButton layoutX="342.0" layoutY="30.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
+      <JFXButton layoutX="342.0" layoutY="52.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
          <font>
             <Font name="Candara" size="12.0" />
          </font>
       </JFXButton>
-      <Separator layoutX="217.0" layoutY="52.0" orientation="VERTICAL" prefHeight="262.0" prefWidth="0.0" />
+      <Separator layoutX="207.0" layoutY="84.0" orientation="VERTICAL" prefHeight="262.0" prefWidth="0.0" />
 </children>
 </AnchorPane>
