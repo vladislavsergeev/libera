@@ -49,11 +49,14 @@
                                  <children>
                                     <AnchorPane prefHeight="35.0" prefWidth="290.0">
                                        <children>
-                                          <JFXTextField fx:id="searchComBox" focusColor="BLACK" layoutX="6.0" layoutY="7.0" onKeyReleased="#searchEvent" prefHeight="35.0" prefWidth="270.0" promptText="🔎 Поиск" style="-fx-background-color: #e4e4e4;" unFocusColor="#ffffff00" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="14.0">
-                                             <padding>
-                                                <Insets left="10.0" right="10.0" />
-                                             </padding>
-                                          </JFXTextField>
+                                          <VBox>
+                                             <JFXTextField fx:id="searchComBox" focusColor="BLACK" layoutX="6.0" layoutY="7.0" prefHeight="35.0" prefWidth="270.0" promptText="🔎 Поиск" style="-fx-background-color: #e4e4e4;" unFocusColor="#ffffff00" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="14.0">
+                                                <padding>
+                                                   <Insets left="10.0" right="10.0" />
+                                                </padding>
+                                             </JFXTextField>
+                                             <JFXButton text="Поиск" onAction="#searchEvent"/>
+                                          </VBox>
                                        </children>
                                     </AnchorPane>
                                  </children>

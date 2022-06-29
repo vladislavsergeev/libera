@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import utils.Const;
 
 public class TaskController implements Initializable {
 
@@ -44,57 +45,25 @@ public class TaskController implements Initializable {
 
     @FXML
     private void editAction(KeyEvent event) {
-
         System.out.println("TaskController -> editAction() ...");
-        String sqlString = "Update tasks set text = ? where id = ?";
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        try {
-            PreparedStatement prepareStatement = con.prepareStatement(sqlString);
-            prepareStatement.setInt(2, Integer.parseInt(id.getText()));
-            prepareStatement.setString(1, text.getText());
-            prepareStatement.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("failed to insert in table");
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
 
+        app.libera.send(Const.EDIT);
+        app.libera.waitForInt();
+
+        app.libera.send(text.getText());
+        app.libera.waitForInt();
+
+        app.libera.send(Integer.parseInt(id.getText()));
     }
 
     @FXML
     private void delete(ActionEvent event) {
         System.out.println("TaskController -> delete() ...");
-        String sqlString = "DELETE FROM tasks WHERE id =  ?";
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        try {
-            PreparedStatement prepareStatement = con.prepareStatement(sqlString);
-            prepareStatement.setInt(1, Integer.parseInt(id.getText()));
-            prepareStatement.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            System.out.println("failed to delete the table");
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
+
+        app.libera.send(Const.REMOVE);
+        app.libera.waitForInt();
+        app.libera.send(Integer.parseInt(id.getText()));
+        app.libera.waitForInt();
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/app/Home.fxml"));

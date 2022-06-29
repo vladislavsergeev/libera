@@ -35,8 +35,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.Const;
 
 public class HomeController implements Initializable {
+    private static int user_id;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -60,9 +62,14 @@ public class HomeController implements Initializable {
     @FXML
     private MenuItem close;
 
+    public static void setUserId(int id) {
+        user_id = id;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("HomeController -> initialize() ...");
+        user_id = -1;
         InitializeTasks();
         try {
             AnchorPane aboutPane = FXMLLoader.load(getClass().getResource("about.fxml"));
@@ -71,6 +78,21 @@ public class HomeController implements Initializable {
             System.out.println("error in loading about.fxml file");
         }
 
+    }
+
+    @FXML
+    private void logout() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+
+            Scene scene = new Scene(root);
+            ((Stage) (searchComBox.getScene().getWindow())).setScene(scene);
+            ((Stage) (searchComBox.getScene().getWindow())).initStyle(StageStyle.UNDECORATED);
+            ((Stage) (searchComBox.getScene().getWindow())).show();
+        }
+        catch (IOException e) {
+
+        }
     }
 
     @FXML
@@ -112,14 +134,13 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void searchEvent(KeyEvent event) {
+    private void searchEvent() {
         System.out.println("HomeController -> searchEvent() ...");
         if ((searchComBox.getText().trim().equals(""))) {
             InitializeTasks();
         } else {
-
             FP.getChildren().clear();
-            List<TaskFX> taskList = select("where text like '%" + searchComBox.getText().trim() + "%'");
+            List<TaskFX> taskList = search();
             int count = taskList.size();
             for (int i = 0; i < count; i++) {
                 try {
@@ -137,9 +158,8 @@ public class HomeController implements Initializable {
 
     public void InitializeTasks() {
         System.out.println("HomeController -> InitializeTasks() ...");
-        createTasksTable();
         FP.getChildren().clear();
-        List<TaskFX> taskList = select("");
+        List<TaskFX> taskList = select();
         int count = taskList.size();
         for (int i = 0; i < count; i++) {
             try {
@@ -150,31 +170,6 @@ public class HomeController implements Initializable {
 
                 FP.getChildren().add(TaskFXML);
             } catch (IOException ex) {
-                System.out.println(ex);
-            }
-        }
-    }
-
-    private void createTasksTable() {
-        System.out.println("HomeController -> createTasksTable() ...");
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        String tableCreateSQL = "CREATE TABLE if not EXISTS tasks ( id INTEGER IDENTITY PRIMARY KEY,"
-                + " text LONGVARCHAR NOT NULL , color VARCHAR(25) NOT NULL )";
-        try {
-            con.prepareStatement(tableCreateSQL).execute();
-        } catch (Exception ex) {
-            System.out.println(ex);
-            System.out.println("failed to create table");
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println("error in close connection");
                 System.out.println(ex);
             }
         }
@@ -210,59 +205,71 @@ public class HomeController implements Initializable {
 
     public static void insert(String text, String color) {
         System.out.println("HomeController -> insert() ...");
-        String sqlString = "INSERT INTO tasks (text,color) values (?,?)";
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        try {
-            PreparedStatement prepareStatement = con.prepareStatement(sqlString);
+        app.libera.send(Const.ADD);
+        app.libera.waitForInt();
 
-            prepareStatement.setString(1, text);
-            prepareStatement.setString(2, color);
-            prepareStatement.execute();
-            System.out.println("insert Done ...");
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            System.out.println("failed to insert table");
-        }
+        app.libera.send(text);
+        app.libera.waitForInt();
 
+        app.libera.send(color);
+        app.libera.waitForInt();
     }
 
-    public static List select(String s) {
+    public static List select() {
         System.out.println("HomeController -> select() ...");
-        String sqlString;
-        if ("".equals(s)) {
-            sqlString = "SELECT * FROM tasks";
-        } else {
-            sqlString = "SELECT * FROM tasks " + s;
-        }
-        try {
-            Class.forName("org.hsqldb.jdbcDriver");
-            con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+
+        app.libera.send(Const.GET);
+
+        boolean stop = false;
         List listTasks = new ArrayList<TaskFX>();
-        try {
-            PreparedStatement prepareStatement = con.prepareStatement(sqlString);
-            ResultSet resultSet = prepareStatement.executeQuery();
-            while (resultSet.next()) {
-                listTasks.add(new TaskFX(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3)));
+
+        do {
+            int id = app.libera.waitForInt();
+            if (id < 0) stop = true;
+            else {
+                app.libera.send(1);
+
+                String text = app.libera.waitForString();
+                app.libera.send(1);
+
+                String color = app.libera.waitForString();
+                app.libera.send(1);
+
+                listTasks.add(new TaskFX(id, text, color));
             }
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex);
+        } while (!stop);
+
+        printList(listTasks);
+
+        return listTasks;
+    }
+
+    public List search() {
+        System.out.println("HomeController -> select() ...");
+
+        app.libera.send(Const.SEARCH);
+        app.libera.waitForInt();
+        app.libera.send(searchComBox.getText().trim());
+
+        boolean stop = false;
+        List listTasks = new ArrayList<TaskFX>();
+
+        do {
+            int id = app.libera.waitForInt();
+            if (id < 0) stop = true;
+            else {
+                app.libera.send(1);
+
+                String text = app.libera.waitForString();
+                app.libera.send(1);
+
+                String color = app.libera.waitForString();
+                app.libera.send(1);
+
+                listTasks.add(new TaskFX(id, text, color));
             }
-        }
+        } while (!stop);
+
         printList(listTasks);
 
         return listTasks;

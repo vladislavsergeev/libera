@@ -6,6 +6,7 @@ public class TaskFX extends Parent {
 
     String text;
     String hexaColor;
+    int user_id;
     int id;
 
     public TaskFX(int id, String text, String hexaColor) {
