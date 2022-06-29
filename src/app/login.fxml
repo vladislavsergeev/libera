@@ -72,6 +72,6 @@
             <Font name="Candara" size="12.0" />
          </font>
       </JFXButton>
-      <Separator layoutX="207.0" layoutY="28.0" orientation="VERTICAL" prefHeight="311.0" prefWidth="0.0" />
+      <Separator layoutX="217.0" layoutY="52.0" orientation="VERTICAL" prefHeight="262.0" prefWidth="0.0" />
 </children>
 </AnchorPane>
