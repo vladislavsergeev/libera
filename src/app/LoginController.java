@@ -4,9 +4,11 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,17 +29,35 @@ public class LoginController implements Initializable {
     @FXML
     private Label err;
 
+    private double xOffset = 0;
+
+    private double yOffset = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("LoginController -> initialize() ...");
     }
 
+
+    @FXML
+    public void RootMousePressed(Event event) {
+        MouseEvent e = (MouseEvent) event;
+        xOffset = e.getSceneX();
+        yOffset = e.getSceneY();
+    }
+
+    @FXML
+    public void RootMouseDragged(Event event) {
+        MouseEvent e = (MouseEvent) event;
+        ((Stage) (((Node) (event.getSource())).getScene().getWindow())).setX(e.getScreenX() - xOffset);
+        ((Stage) (((Node) (event.getSource())).getScene().getWindow())).setY(e.getScreenY() - yOffset);
+    }
     @FXML
     private void doLogin() {
         System.out.println("LoginController -> doLogin() ...");
 
         if (loginField.getText().equals("") || passField.getText().equals("")) {
-            err.setText("Пустое поле для логина или пароля");
+            err.setText("Заполнены не все поля для входа");
         }
         else {
             try {
@@ -51,8 +71,8 @@ public class LoginController implements Initializable {
 
                 int res = app.libera.waitForInt();
 
-                if (res == Const.LOGIN_DENIED) err.setText("Пользователя с таким именем не существует");
-                else if (res == Const.WRONG_PASSWORD) err.setText("Неверное имя пользователя или пароль");
+                if (res == Const.LOGIN_DENIED) err.setText("Такого аккаунта нет");
+                else if (res == Const.WRONG_PASSWORD) err.setText("Неверный пароль");
                 else {
                     Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
@@ -74,7 +94,7 @@ public class LoginController implements Initializable {
         System.out.println("LoginController -> doReg() ...");
 
         if (loginField.getText().equals("") || passField.getText().equals("")) {
-            err.setText("Пустое поле для логина или пароля");
+            err.setText("Заполнены не все поля для входа");
         }
         else {
             try {
@@ -88,7 +108,7 @@ public class LoginController implements Initializable {
 
                 int res = app.libera.waitForInt();
 
-                if (res == Const.LOGIN_DENIED) err.setText("Пользователь с таким именем уже существует");
+                if (res == Const.LOGIN_DENIED) err.setText("Логин уже используется");
                 else {
                     Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 

@@ -88,6 +88,11 @@
                      <menus>
                         <Menu id="file" fx:id="file" mnemonicParsing="false" text="Файл">
                            <items>
+                              <MenuItem id="close" mnemonicParsing="false" onAction="#logout" text="Сменить пользователя">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
                               <MenuItem id="close" fx:id="About" mnemonicParsing="false" onAction="#aboutWindow" text="О программе">
                                  <accelerator>
                                     <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -107,7 +112,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="231.0" layoutY="6.0" onAction="#logout" prefHeight="25.0" prefWidth="62.0" text="Выйти" />
+                  <JFXButton focusTraversable="false" layoutX="231.0" layoutY="6.0" onAction="#closeWindow" prefWidth="62.0" text="Выйти" />
                </children>
             </Pane>
          </children>
