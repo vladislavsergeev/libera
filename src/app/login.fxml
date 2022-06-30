@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -16,71 +15,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#RootMouseDragged" onMousePressed="#RootMousePressed" prefHeight="434.0" prefWidth="420.0" style="-fx-border-color: #91a5a2; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#RootMouseDragged" onMousePressed="#RootMousePressed" prefHeight="300.0" prefWidth="350.0" style="-fx-border-color: #91a5a2; -fx-border-width: 1.5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LoginController">
 <children>
-   <VBox layoutX="41.0" layoutY="52.0" spacing="43.0">
-      <children>
-            <ImageView fitHeight="52.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/libera-logo-black.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="17.0" />
-               </VBox.margin>
-            </ImageView>
-         <VBox>
-            <children>
-               <JFXTextField fx:id="loginField" focusColor="#91a5a2" promptText="Логин">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font></JFXTextField>
-            </children>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
-         </VBox>
-         <VBox>
-            <children>
-               <JFXPasswordField fx:id="passField" focusColor="#91a5a2" promptText="Пароль">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font></JFXPasswordField>
-            </children>
-         </VBox>
-            <VBox alignment="CENTER" spacing="30.0">
-               <children>
-               <JFXButton buttonType="RAISED" mnemonicParsing="false" onAction="#doLogin" style="-fx-background-color: #91a5a2; -fx-background-radius: 0;" text="Вход" textFill="WHITE">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </JFXButton>
-               <JFXButton mnemonicParsing="false" onAction="#doReg" text="Создать ID">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </VBox>
-      </children>
+      <ImageView fitHeight="52.0" fitWidth="32.0" layoutX="32.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/libera-logo-black.png" />
+         </image>
+      </ImageView>
+   <VBox alignment="CENTER" layoutX="193.0" layoutY="41.0" spacing="43.0">
+         <children>
+         <JFXTextField fx:id="loginField" focusColor="#91a5a2" promptText="логин">
+               <font>
+                  <Font name="Candara" size="12.0" />
+               </font>
+            </JFXTextField>
+         <JFXPasswordField fx:id="passField" focusColor="#91a5a2" promptText="пароль">
+               <font>
+                  <Font name="Candara" size="12.0" />
+               </font>
+            </JFXPasswordField>
+         <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#doLogin" style="-fx-background-color: #91a5a2; -fx-background-radius: 5;" text="Вход" textFill="WHITE">
+               <font>
+                  <Font name="Candara" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
    </VBox>
-   <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="166.0" prefHeight="98.0" prefWidth="146.0" text="Войдите с libera ID" textAlignment="CENTER" wrapText="true">
+   <Label fx:id="err" layoutX="30.0" layoutY="107.0" prefHeight="124.0" prefWidth="73.0" style="-fx-border-color: black;" textAlignment="CENTER" wrapText="true">
          <font>
-            <Font name="Candara" size="12.0" />
+            <Font name="Candara Italic" size="12.0" />
          </font>
       </Label>
-      <JFXButton layoutX="342.0" layoutY="52.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
-         <font>
-            <Font name="Candara" size="12.0" />
-         </font>
-      </JFXButton>
-      <Separator layoutX="210.0" layoutY="84.0" orientation="VERTICAL" prefHeight="262.0" prefWidth="0.0" />
-      <MenuBar layoutY="2.0" visible="false">
+      <MenuBar layoutX="1.0" layoutY="2.0" visible="false">
         <menus>
           <Menu mnemonicParsing="false" text="Файл">
             <items>
@@ -103,5 +69,16 @@
           </Menu>
         </menus>
       </MenuBar>
+   <JFXButton buttonType="RAISED" layoutX="221.0" layoutY="231.0" mnemonicParsing="false" onAction="#doReg" style="-fx-background-color: #91a5a2; -fx-border-radius: 5;" text="Создать ID" textFill="WHITE">
+         <font>
+            <Font name="Candara" size="12.0" />
+         </font>
+      </JFXButton>
+      <Separator layoutX="157.0" layoutY="16.0" orientation="VERTICAL" prefHeight="269.0" prefWidth="4.0" />
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#closeWindow" text="Выход">
+         <font>
+            <Font name="Candara" size="12.0" />
+         </font>
+      </JFXButton>
 </children>
 </AnchorPane>
