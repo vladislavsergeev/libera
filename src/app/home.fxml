@@ -107,7 +107,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton focusTraversable="false" layoutX="231.0" layoutY="6.0" onAction="#closeWindow" prefHeight="25.0" prefWidth="62.0" text="Выйти" />
+                  <JFXButton focusTraversable="false" layoutX="231.0" layoutY="6.0" onAction="#logout" prefHeight="25.0" prefWidth="62.0" text="Выйти" />
                </children>
             </Pane>
          </children>

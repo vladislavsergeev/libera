@@ -65,12 +65,12 @@
             </VBox>
       </children>
    </VBox>
-   <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="166.0" prefHeight="98.0" prefWidth="146.0" textAlignment="RIGHT" wrapText="true">
+   <Label fx:id="err" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="166.0" prefHeight="98.0" prefWidth="146.0" text="Здравствуйте!" textAlignment="RIGHT" wrapText="true">
          <font>
-            <Font name="Candara Italic" size="12.0" />
+            <Font name="Candara" size="12.0" />
          </font>
       </Label>
-      <JFXButton layoutX="342.0" layoutY="52.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
+      <JFXButton layoutX="158.0" layoutY="52.0" mnemonicParsing="false" onAction="#closeWindow" style="-fx-border-radius: 5;" text="Выйти" textAlignment="CENTER">
          <font>
             <Font name="Candara" size="12.0" />
          </font>
