@@ -87,8 +87,6 @@ public class HomeController implements Initializable {
 
             Scene scene = new Scene(root);
             ((Stage) (searchComBox.getScene().getWindow())).setScene(scene);
-            ((Stage) (searchComBox.getScene().getWindow())).initStyle(StageStyle.UNDECORATED);
-            ((Stage) (searchComBox.getScene().getWindow())).show();
         }
         catch (IOException e) {
 
