@@ -1,2 +1,2 @@
-"C:\Users\maksim\Desktop\jdk-17.0.2\bin\java.exe" -cp .;..;.\libs\hsqldb.jar server
+"C:\Program Files\Java\jdk-17.0.3.1\bin\java.exe" -cp .;..;.\libs\hsqldb.jar server
 pause
