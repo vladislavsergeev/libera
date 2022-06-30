@@ -186,7 +186,6 @@ public class Socketmaster implements Runnable {
 
 					sqlString = "SELECT * FROM users WHERE login = '" + login + "'";
 
-
 					try {
 						Class.forName("org.hsqldb.jdbcDriver");
 						con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
@@ -197,8 +196,9 @@ public class Socketmaster implements Runnable {
 					try {
 						PreparedStatement prepareStatement = con.prepareStatement(sqlString);
 						ResultSet resultSet = prepareStatement.executeQuery();
-						if (resultSet.next()) send(Const.LOGIN_DENIED);
+						if (resultSet.next()) send(Const.LOGIN_DENIED);						
 						else {
+							send(Const.SUCCESS);
 							sqlString = "INSERT INTO users (login,password) values (?,?)";
 							try {
 								Class.forName("org.hsqldb.jdbcDriver");
