@@ -75,7 +75,7 @@
          </font>
       </JFXButton>
       <Separator layoutX="157.0" layoutY="16.0" orientation="VERTICAL" prefHeight="269.0" prefWidth="4.0" />
-      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="20.4" layoutY="258.0" mnemonicParsing="false" onAction="#closeWindow" text="Выход">
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="20.48" layoutY="258.0" mnemonicParsing="false" onAction="#closeWindow" text="Выход">
          <font>
             <Font name="Candara" size="12.0" />
          </font>
