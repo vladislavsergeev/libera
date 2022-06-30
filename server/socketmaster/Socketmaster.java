@@ -212,13 +212,36 @@ public class Socketmaster implements Runnable {
 								prepareStatement.setString(1, login);
 								prepareStatement.setString(2, password);
 								prepareStatement.execute();
-								System.out.println("insert Done ...");
-
-								user_id = resultSet.getInt("id");								
+								System.out.println("insert Done ...");							
 							} catch (SQLException ex) {
 								System.out.println(ex);
 								System.out.println("failed to insert table");
 							}
+						}
+					} catch (Exception e) {
+						System.out.println(e);
+					} finally {
+						try {
+							con.close();
+						} catch (SQLException ex) {
+							System.out.println(ex);
+						}
+					}
+					
+					sqlString = "SELECT * FROM users WHERE login = '" + login + "'";
+					
+					try {
+						Class.forName("org.hsqldb.jdbcDriver");
+						con = DriverManager.getConnection("jdbc:hsqldb:file:db/TaskDatabase", "SA", "");
+					} catch (Exception ex) {
+						System.out.println(ex);
+					}
+
+					try {
+						PreparedStatement prepareStatement = con.prepareStatement(sqlString);
+						ResultSet resultSet = prepareStatement.executeQuery();
+						if (resultSet.next()) {
+							user_id = resultSet.getInt("id");
 						}
 					} catch (Exception e) {
 						System.out.println(e);
