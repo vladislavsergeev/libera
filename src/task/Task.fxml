@@ -27,7 +27,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <font>
-                  <Font name="Lucida Sans Typewriter Regular" size="14.0" />
+                  <Font name="Candara" size="14.0" />
                </font>
             </JFXTextArea>
          </children>

@@ -84,6 +84,24 @@
             </BorderPane>
             <Pane onMouseDragged="#RootMouseDragged" onMousePressed="#RootMousePressed" prefHeight="35.0" prefWidth="900.0" style="-fx-background-color: #91a5a2;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <MenuBar visible="false">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Файл">
+                        <items>
+                          <MenuItem mnemonicParsing="false" onAction="#AddTaskAction" text="Создать">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                              <MenuItem mnemonicParsing="false" onAction="#searchEvent" text="Поиск">
+                                 <accelerator>
+                                    <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                 </accelerator>
+                              </MenuItem>
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
                   <MenuBar fx:id="menuBar" layoutY="5.0" maxHeight="98.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: #91a5a2;">
                      <menus>
                         <Menu id="file" fx:id="file" mnemonicParsing="false" text="Файл">
