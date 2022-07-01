@@ -39,11 +39,11 @@
                </children>
             </HBox>
             <Separator />
-            <HBox prefWidth="244.0" spacing="10.0">
+            <HBox alignment="TOP_CENTER" prefWidth="244.0" spacing="25.0">
                <children>
                   <VBox prefHeight="63.0" prefWidth="110.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="136.0" text="Владислав С.">
+                        <Label prefHeight="30.0" prefWidth="136.0" text="Владислав С.,">
                            <font>
                               <Font name="Candara" size="13.0" />
                            </font>
