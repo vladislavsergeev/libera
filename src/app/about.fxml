@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AP" maxHeight="175.0" maxWidth="280.0" prefHeight="175.0" prefWidth="280.0" style="-fx-background-color: #FFFFFF;" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.AboutController">
+<AnchorPane id="AnchorPane" fx:id="AP" maxHeight="200.0" maxWidth="280.0" prefHeight="200.0" prefWidth="280.0" style="-fx-background-color: #FFFFFF;" stylesheets="@home.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.AboutController">
    <children>
       <VBox layoutX="18.0" layoutY="14.0" prefHeight="147.0" prefWidth="244.0" spacing="20.0">
          <children>
@@ -41,18 +41,23 @@
             <Separator />
             <HBox prefWidth="244.0" spacing="10.0">
                <children>
-                  <VBox prefHeight="63.0" prefWidth="125.0" spacing="20.0">
+                  <VBox prefHeight="63.0" prefWidth="110.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="108.0" text="Владислав С., 2022.">
+                        <Label prefHeight="30.0" prefWidth="136.0" text="Владислав С.">
                            <font>
                               <Font name="Candara" size="13.0" />
                            </font>
                         </Label>
-                        <JFXButton buttonType="RAISED" maxHeight="24.0" maxWidth="67.0" onAction="#okAction" prefHeight="24.0" prefWidth="67.0" style="-fx-background-color: #141e2a;" text="Закрыть" textFill="WHITE">
+                        <Label prefHeight="30.0" prefWidth="136.0" text="Максим Е., 2022">
                            <font>
-                              <Font name="System Italic" size="11.0" />
+                              <Font name="Candara" size="13.0" />
                            </font>
-                        </JFXButton>
+                        </Label>
+                        <Label prefHeight="30.0" prefWidth="136.0">
+                           <font>
+                              <Font name="Candara" size="13.0" />
+                           </font>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="63.0" prefWidth="110.0" spacing="5.0">
@@ -78,5 +83,10 @@
             </HBox>
          </children>
       </VBox>
+      <JFXButton buttonType="RAISED" layoutX="18.0" layoutY="161.0" maxHeight="24.0" maxWidth="67.0" onAction="#okAction" prefHeight="24.0" prefWidth="67.0" style="-fx-background-color: #141e2a;" text="Закрыть" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="11.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
